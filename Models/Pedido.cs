@@ -8,7 +8,7 @@ namespace SegundaPracticaMvcCore.Models
     {
         [Key]
         [Column("IDPEDIDO")]
-        public int PedidoId { get; set; }
+        public int? PedidoId { get; set; }
         [Column("IDFACTURA")]
         public int FacturaId { get; set; }
         [Column("FECHA")]

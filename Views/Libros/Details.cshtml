@@ -1,4 +1,13 @@
-﻿@model SegundaPracticaMvcCore.Models.Libro
+﻿@model Libro
+@using SegundaPracticaMvcCore.Extensions
+
+@{
+    List<int> ids = null;
+    if (Context.Session.GetObject<List<int>>("IDSLIBROS") != null)
+    {
+        ids = Context.Session.GetObject<List<int>>("IDSLIBROS");
+    }
+}
 
 <div>
     <h4>@Model.Titulo</h4>
@@ -42,7 +51,21 @@
         </dd>
     </dl>
 </div>
-<div>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    <a asp-action="Index">Back to List</a>
-</div>
+
+@if (ids == null || !ids.Contains(Model.LibroId))
+{
+    <a asp-controller="Libros"
+       asp-action="AñadirLibro"
+       asp-route-libroId="@Model.LibroId">
+        Añadir libro
+    </a>
+
+}
+else
+{
+    <a asp-controller="Libros"
+       asp-action="QuitarLibro"
+       asp-route-libroId="@Model.LibroId">
+        Quitar libro
+    </a>
+}

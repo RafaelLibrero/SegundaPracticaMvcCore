@@ -56,7 +56,10 @@ namespace SegundaPracticaMvcCore.Controllers
                     CookieAuthenticationDefaults.AuthenticationScheme,
                     userPrincipal);
 
-                return RedirectToAction("Perfil", "Usuarios");
+                string controller = TempData["controller"].ToString();
+                string action = TempData["action"].ToString();
+
+                return RedirectToAction(action, controller);
             }
             else
             {

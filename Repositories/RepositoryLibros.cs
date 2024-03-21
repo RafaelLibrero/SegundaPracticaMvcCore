@@ -80,6 +80,7 @@ namespace SegundaPracticaMvcCore.Repositories
         public async Task InsertPedido (int facturaId, DateTime fecha,  int libroId, int usuarioId)
         {
             Pedido pedido = new Pedido();
+
             pedido.PedidoId = await this.context.Pedidos.MaxAsync(x => x.PedidoId) + 1;
             pedido.FacturaId = facturaId;
             pedido.Fecha = fecha;
