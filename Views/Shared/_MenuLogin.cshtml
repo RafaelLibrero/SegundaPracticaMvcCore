@@ -1,0 +1,28 @@
+﻿@using System.Security.Claims
+
+<div class="d-flex align-items-center">
+
+    <ul class="navbar-nav ms-auto">
+        @if (Context.User.Identity.IsAuthenticated == false)
+        {
+            <li class="nav-item">
+                <a asp-controller="Usuarios"
+                   asp-action="Perfil"
+                   class="nav-link">
+                    Identificate
+                </a>
+            </li>
+        }
+        else
+        {
+            <li class="nav-item dropdown">
+                <a asp-controller="Usuarios" asp-action="Perfil">
+                    <img src="~/images/@Context.User.FindFirstValue("Imagen")" style="height: 50px; width: auto"/> 
+                    Hola @Context.User.Identity.Name</a>
+            </li>
+            <li class="nav-item">
+                <a class="dropdown-item" asp-controller="Auth" asp-action="Logout">Cerrar sesión</a>
+            </li>
+        }
+    </ul>
+</div>
